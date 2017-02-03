@@ -12,30 +12,62 @@
  *
  *= require_tree .
  *= require_self
+//= require foundation_and_overrides
  */
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
-
 @import "foundation_and_overrides";
-/* Add imports of custom sass/scss files here */
+
 
 body{
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.4em;
   background: #f5f5f5;
   color: #4d4d4d;
-  min-width: 230px;
-  max-width: 550px;
-  margin: 0 auto;
   font-weight: 300;
 }
 
-header{
-  height: 65px;
-  border-bottom: 1px solid #ededed;
+nav {
+  ul{
+    float: right !important;
+    margin-right: -15px;
+    display: inline-block;
+    right: 200px;
+    li{
+      display: inline-block;
+      font-size: 1.5em;
+      padding: 15px 25px;
+      a{
+        color: white;
+        :hover{
+          color: white;
+          text-decoration: dashed;
+        }
+      }
+    }
+  }
 }
 
+
+
+
+.container{
+  min-width: 230px;
+  max-width: 550px;
+  margin: 0 auto;
+    header{
+    height: 65px;
+    border-bottom: 1px solid #ededed;
+  }
+  h1{
+    width: 100%;
+    font-size: 100px;
+    font-weight: 100;
+    text-align: center;
+    color: rgba(175, 47, 47, 0.15);
+  }
+}
 
 .toggle-on{
   position: absolute;
@@ -112,14 +144,6 @@ footer li a:hover {
 .comp-clear:hover a {
   color: #777;
   border-color: rgba(175, 47, 47, 0.1);
-}
-
-h1{
-  width: 100%;
-  font-size: 100px;
-  font-weight: 100;
-  text-align: center;
-  color: rgba(175, 47, 47, 0.15);
 }
 
 .todoapp{
