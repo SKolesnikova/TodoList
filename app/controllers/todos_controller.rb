@@ -3,8 +3,6 @@ class TodosController < ApplicationController
   def index
     @todos = Todo.all
     @todo = Todo.new
-    @items_left = Todo.where(completed: false).count
-
   end
 
   def new
@@ -24,7 +22,7 @@ class TodosController < ApplicationController
   def update
     @todo = Todo.find params[:id]
     @todo.update_attributes(completed: todo_params[:completed])
-    redirect_to todos_path
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -34,13 +32,13 @@ class TodosController < ApplicationController
   end
 
   def completed
-    @todos = Todo.where(completed:true)
+    @todos = Todo.completed
     @todo = Todo.new
     render 'index'
   end
 
   def uncompleted
-    @todos = Todo.where(completed: false)
+    @todos = Todo.uncompleted
     @todo = Todo.new
     render 'index'
   end

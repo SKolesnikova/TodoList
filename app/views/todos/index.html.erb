@@ -10,7 +10,7 @@
       </div>
 
       <%= form_for @todo do |f| %>
-          <%= f.text_field :title, placeholder: 'What needs to be done?' %>
+          <%= f.text_field :title, placeholder: 'What needs to be done?', autofocus: true %>
       <% end %>
 
     </div>
@@ -32,6 +32,7 @@
            </div>
 
             <span class="<%='line-through' if todo.completed %>"><%=todo.title %></span>
+
             <%= link_to todo, method: :delete, class: 'destroy' do %>
                 <i class="fa fa-times"></i>
             <% end %>
@@ -44,7 +45,7 @@
 
   <footer>
 
-    <span class="todo-count"><%= @items_left  %> items left</span>
+    <span class="todo-count"><%= pluralize(@todos.completed.count, 'item')  %>  left</span>
 
 
 
