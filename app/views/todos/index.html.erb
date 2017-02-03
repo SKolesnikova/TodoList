@@ -26,7 +26,7 @@
            <div class="toggle">
 
              <%= form_for todo do |f| %>
-              <%= f.check_box :completed, :onclick => "$(this).closest('form').submit()", class: "checkbox-circle"%>
+              <%= f.check_box :completed, :onclick => "$(this).closest('form').submit()", class: "roundedTwo"%>
              <% end %>
 
            </div>
@@ -44,7 +44,7 @@
 
   <footer>
 
-    <span class="todo-count"><%= @todo.completed %> items left</span>
+    <span class="todo-count"><%= @items_left  %> items left</span>
 
 
 
@@ -54,6 +54,7 @@
     <li><%= link_to 'Completed', completed_path %></li>
   </ul>
 
+    <span class="comp-clear"><%= link_to 'Clear completed', completed_path, method: :delete %></span>
   </footer>
 
 </section>

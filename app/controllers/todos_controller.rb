@@ -3,6 +3,8 @@ class TodosController < ApplicationController
   def index
     @todos = Todo.all
     @todo = Todo.new
+    @items_left = Todo.where(completed: false).count
+
   end
 
   def new
@@ -38,11 +40,15 @@ class TodosController < ApplicationController
   end
 
   def uncompleted
-    @todos = Todo.where(completed:false)
+    @todos = Todo.where(completed: false)
     @todo = Todo.new
     render 'index'
   end
 
+  def delete_all
+    Todo.where(completed: true).destroy_all
+    redirect_to todos_path
+  end
 
   private
   def todo_params
