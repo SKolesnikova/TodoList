@@ -50,8 +50,6 @@ nav {
 }
 
 
-
-
 .container{
   min-width: 230px;
   max-width: 550px;
@@ -68,6 +66,12 @@ nav {
     color: rgba(175, 47, 47, 0.15);
   }
 }
+
+.head-container{
+  width: 80%;
+}
+
+
 
 .toggle-on{
   position: absolute;

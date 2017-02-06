@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :todos, only: [:index, :update, :create, :destroy]
   get 'completed', to: 'todos#completed'
   get 'uncompleted', to: 'todos#uncompleted'
