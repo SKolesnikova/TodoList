@@ -6,7 +6,6 @@ class TodosController < ApplicationController
   end
 
   def new
-    #@todo = Todo.new
     @todo = current_user.todos.build
   end
 
@@ -15,9 +14,9 @@ class TodosController < ApplicationController
   end
 
   def create
-    @todo = current_user.todos.build(todo_params)
+    @todo = Todo.new todo_params
     @todo.save
-    redirect_to todos_path
+    redirect_to lists_path(id: @todo.list_id)
   end
 
   def update
@@ -51,8 +50,9 @@ class TodosController < ApplicationController
 
   private
   def todo_params
-    params.require(:todo).permit([:title, :completed])
+    params.require(:todo).permit([:title, :completed, :list_id])
   end
+
 
 
 end

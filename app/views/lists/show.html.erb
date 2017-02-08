@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @list.title %></h1>
+
+<%= render :partial => '/todos/todos_list', locals: {todos: @list.todos, todo: Todo.new(list: @list)}, full: true%>
+
+
+<%= link_to 'Edit List', edit_list_path(@list) %> |
+<%= link_to 'Back', lists_path %>

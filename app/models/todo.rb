@@ -1,5 +1,5 @@
 class Todo < ApplicationRecord
-  belongs_to :user
+  belongs_to :list
 
   scope :completed, ->{where(:completed => true)}
   scope :uncompleted, -> {where( :completed => false )}

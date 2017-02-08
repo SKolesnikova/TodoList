@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  has_many :todos
+  has_many :lists
+  has_many :todos, :through => :lists
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

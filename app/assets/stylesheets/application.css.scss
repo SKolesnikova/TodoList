@@ -36,9 +36,8 @@ nav {
     right: 200px;
     li{
       display: inline-block;
-      font-size: 1.5em;
-      padding: 15px 25px;
-      a{
+      padding-right: 15px;
+       a{
         color: white;
         :hover{
           color: white;
@@ -70,8 +69,6 @@ nav {
 .head-container{
   width: 80%;
 }
-
-
 
 .toggle-on{
   position: absolute;
