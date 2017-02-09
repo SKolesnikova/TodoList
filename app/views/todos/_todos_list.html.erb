@@ -24,15 +24,15 @@
 
           <div class="toggle">
 
-            <%= form_for :todo, url: todos_path, method: :post do |f| %>
+            <%= form_for :todo, url: todo_path(todo), method: :patch do |f| %>
                 <%= f.check_box :completed, :onclick => "$(this).closest('form').submit()", class: "roundedTwo"%>
-            <% end %>
+          <% end %>
 
           </div>
 
           <span class="<%='line-through' if todo.completed %>"><%=todo.title %></span>
 
-          <%= link_to todo, method: :delete, class: 'destroy' do %>
+          <%= link_to todo_path(todo), method: :delete, class: 'destroy' do %>
               <i class="fa fa-times"></i>
           <% end %>
 
@@ -44,9 +44,7 @@
 
   <footer>
 
-    <span class="todo-count"><%= pluralize(todos.completed.count, 'item')  %>  left</span>
-
-
+    <span class="todo-count"><%= pluralize(todos.uncompleted.count, 'item')  %>  left</span>
 
     <ul>
       <li class="selected"><%= link_to 'All', todos_path %></li>

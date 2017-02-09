@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+  before_action :set_todo!, only: [:show, :update, :destroy]
 
   def index
     @todos = Todo.all
@@ -10,25 +11,25 @@ class TodosController < ApplicationController
   end
 
   def show
-    @todo = Todo.find(params[:id])
   end
 
   def create
     @todo = Todo.new todo_params
     @todo.save
-    redirect_to lists_path(id: @todo.list_id)
+    redirect_to list_path(@todo.list)
   end
 
   def update
-    @todo = Todo.find params[:id]
-    @todo.update_attributes(completed: todo_params[:completed])
-    redirect_back(fallback_location: root_path)
+
+    @todo.update_attribute(:completed, todo_params[:completed] == '1')
+    puts @todo.completed.to_s
+    # redirect_back(fallback_location: root_path)
+    redirect_to list_path(@todo.list)
   end
 
   def destroy
-    @todo = Todo.find params[:id]
     @todo.destroy
-    redirect_to todos_path
+    redirect_to list_path(@todo.list)
   end
 
   def completed
@@ -49,8 +50,13 @@ class TodosController < ApplicationController
   end
 
   private
+
   def todo_params
     params.require(:todo).permit([:title, :completed, :list_id])
+  end
+
+  def set_todo!
+    @todo = current_user.todos.find_by(id: params[:id])
   end
 
 
