@@ -2,6 +2,7 @@ class TodosController < ApplicationController
   before_action :set_todo!, only: [:show, :update, :destroy]
 
   def index
+    byebug
     @todos = Todo.all
     @todo = Todo.new
   end
@@ -32,26 +33,26 @@ class TodosController < ApplicationController
   end
 
   def completed
-    @todos = Todo.completed
     @todo = Todo.new
+    @todos = Todo.completed
     render 'lists/show'
   end
 
   def uncompleted
-    @todos = Todo.uncompleted
     @todo = Todo.new
+    @todos = Todo.uncompleted
     render 'lists/show'
   end
 
   def delete_all
     Todo.where(completed: true).destroy_all
-    redirect_to list_path(@todo.list)
+    redirect_to list_path(params.require(:list))
   end
 
   private
 
   def todo_params
-    params.require(:todo).permit([:title, :completed, :list_id])
+    params.require(:todo).permit(:title, :completed, :list_id)
   end
 
   def set_todo!

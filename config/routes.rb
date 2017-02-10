@@ -2,13 +2,16 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :lists
+  resources :lists do
+    member do
+      get 'completed'
+      get 'uncompleted'
+      delete 'completed'
+    end
+  end
+
   resources :todos, only: [:index, :update, :create, :destroy]
 
-
-  get 'completed', to: 'todos#completed'
-  get 'uncompleted', to: 'todos#uncompleted'
-  delete 'completed', to: 'todos#delete_all'
   root "lists#index"
 
 

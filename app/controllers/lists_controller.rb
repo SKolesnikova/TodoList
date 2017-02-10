@@ -1,16 +1,24 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :completed, :uncompleted]
 
   def index
     @lists = current_user.lists
   end
 
   def show
-    @list = List.find(params[:id])
+    # debugger
+    @todos = @list.todos
   end
 
+  def completed
+    @todos = @list.todos.completed
+    render :show
+  end
 
-
+  def uncompleted
+    @todos = @list.todos.uncompleted
+    render :show
+  end
 
   def new
     @list = current_user.lists.build
@@ -58,7 +66,7 @@ class ListsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_list
-    @list = List.find(params[:id])
+    @list = List.find_by(:id => params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
