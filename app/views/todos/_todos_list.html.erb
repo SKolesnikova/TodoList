@@ -25,7 +25,7 @@
           <div class="toggle">
 
             <%= form_for :todo, url: todo_path(todo), method: :patch do |f| %>
-                <%= f.check_box :completed, :onclick => "$(this).closest('form').submit()", class: "roundedTwo"%>
+                <%= f.check_box :completed, checked: todo.completed, :onclick => "$(this).closest('form').submit()", class: "roundedTwo"%>
           <% end %>
 
           </div>
@@ -47,7 +47,7 @@
     <span class="todo-count"><%= pluralize(todos.uncompleted.count, 'item')  %>  left</span>
 
     <ul>
-      <li class="selected"><%= link_to 'All', todos_path %></li>
+      <li class="selected"><%= link_to 'All', list_path %></li>
       <li><%= link_to 'Active', uncompleted_path %></li>
       <li><%= link_to 'Completed', completed_path %></li>
     </ul>

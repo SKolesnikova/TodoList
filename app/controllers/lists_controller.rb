@@ -9,6 +9,9 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
   end
 
+
+
+
   def new
     @list = current_user.lists.build
   end

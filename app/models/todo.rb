@@ -4,6 +4,8 @@ class Todo < ApplicationRecord
   scope :completed, ->{where(:completed => true)}
   scope :uncompleted, -> {where( :completed => false )}
 
+  validates :title, presence: true
+
   def myprop
     self.completed
   end

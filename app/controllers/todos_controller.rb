@@ -20,11 +20,10 @@ class TodosController < ApplicationController
   end
 
   def update
-
     @todo.update_attribute(:completed, todo_params[:completed] == '1')
     puts @todo.completed.to_s
-    # redirect_back(fallback_location: root_path)
-    redirect_to list_path(@todo.list)
+    redirect_back(fallback_location: root_path)
+   #redirect_to list_path(@todo.list)
   end
 
   def destroy
@@ -35,18 +34,18 @@ class TodosController < ApplicationController
   def completed
     @todos = Todo.completed
     @todo = Todo.new
-    render 'index'
+    render 'lists/show'
   end
 
   def uncompleted
     @todos = Todo.uncompleted
     @todo = Todo.new
-    render 'index'
+    render 'lists/show'
   end
 
   def delete_all
     Todo.where(completed: true).destroy_all
-    redirect_to todos_path
+    redirect_to list_path(@todo.list)
   end
 
   private
