@@ -6,7 +6,6 @@ class ListsController < ApplicationController
   end
 
   def show
-    # debugger
     @todos = @list.todos
   end
 

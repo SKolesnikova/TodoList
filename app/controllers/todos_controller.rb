@@ -45,7 +45,8 @@ class TodosController < ApplicationController
   end
 
   def delete_all
-    Todo.where(completed: true).destroy_all
+    @list = List.find_by(:id => params[:id])
+    @list.todos.where(completed: true).destroy_all
     redirect_to list_path(params.require(:list))
   end
 

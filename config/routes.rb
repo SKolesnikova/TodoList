@@ -6,11 +6,13 @@ Rails.application.routes.draw do
     member do
       get 'completed'
       get 'uncompleted'
-      delete 'completed'
+      delete 'completed', to: 'todos#delete_all'
     end
   end
 
   resources :todos, only: [:index, :update, :create, :destroy]
+
+
 
   root "lists#index"
 
